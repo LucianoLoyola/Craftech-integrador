@@ -3,8 +3,8 @@ FROM python:3.11-alpine AS builder
 
 #PYTHONDONTWRITEBYTECODE: No escribir archivos .pyc
 #PYTHONUNBUFFERED: No almacenar en buffer la salida de Python
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 #Dependencias del sistema para compilar paquetes
 RUN apk add --no-cache gcc musl-dev libffi-dev postgresql-dev
@@ -24,8 +24,8 @@ FROM python:3.11-alpine
 
 #PYTHONDONTWRITEBYTECODE: No escribir archivos .pyc
 #PYTHONUNBUFFERED: No almacenar en buffer la salida de Python
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 #Instalo las dependencias mínimas
 RUN apk add --no-cache libpq
