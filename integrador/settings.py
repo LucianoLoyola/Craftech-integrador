@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-p--f2qpn!7j#1499o$_t%#5anymosizl80#6^mx&k11k0uh5d#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "integrador.craftech.io"]
 
 
 # Application definition
