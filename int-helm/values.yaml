@@ -54,7 +54,7 @@ service:
   # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
-  port: 80
+  port: 8000
 
 # If u want to use a different username then you have to set a password too
 # Otherwise the sub-chart will create a random password
@@ -120,28 +120,19 @@ resources: {}
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
-  exec:
-    command:
-      - /bin/sh
-      - -c
-      - |
-        response=$(curl -s http://localhost:8000/healthz)
-        echo "$response" | grep -q '"status": *"ok"'
-  initialDelaySeconds: 15
-  periodSeconds: 20
-  failureThreshold: 3
+  httpGet:
+    path: /healthz
+    port: 8000
+    httpHeaders:
+    - name: Host
+      value: 127.0.0.1
 readinessProbe:
-  exec:
-    command:
-      - /bin/sh
-      - -c
-      - |
-        response=$(curl -s http://localhost:8000/healthz)
-        echo "$response" | grep -q '"status": *"ok"'
-  initialDelaySeconds: 5
-  periodSeconds: 10
-  failureThreshold: 3
-
+  httpGet:
+    path: /healthz
+    port: 8000
+    httpHeaders:
+    - name: Host
+      value: 127.0.0.1
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
   enabled: false
