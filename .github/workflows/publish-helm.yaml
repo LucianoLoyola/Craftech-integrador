@@ -1,0 +1,45 @@
+name: Publish Helm Chart
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main branch (source chart)
+        uses: actions/checkout@v4
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.14.3 
+
+      - name: Package Helm chart
+        run: |
+          mkdir -p packaged
+          helm package . -d packaged
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Merge and update index.yaml
+        run: |
+          helm repo index packaged --url https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }} --merge gh-pages/index.yaml
+          cp packaged/*.tgz gh-pages/
+          cp packaged/index.yaml gh-pages/
+
+      - name: Commit and push to gh-pages
+        run: |
+          cd gh-pages
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add .
+          git commit -m "Update chart on $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push origin gh-pages
