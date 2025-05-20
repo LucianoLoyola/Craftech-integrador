@@ -21,7 +21,7 @@ jobs:
       - name: Package Helm chart
         run: |
           mkdir -p packaged
-          helm package . -d packaged
+          helm package ./int-helm -d packaged
 
       - name: Checkout gh-pages branch
         uses: actions/checkout@v4
