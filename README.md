@@ -1,2 +1,0 @@
-# Craftech-integrador
-Craftech-integrador
