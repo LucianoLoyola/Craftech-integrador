@@ -3,17 +3,17 @@ entries:
   int-helm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-05-20T10:04:13.896330143-03:00"
+    created: "2025-05-20T13:49:01.180072582Z"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: 16.7.2
     description: A Helm chart for Kubernetes
-    digest: 55be9fa27d9a71c3ab2a2d739c0cb2b6b3d2460bc17823d5d67a7d51b598b191
+    digest: af8f6a45be11fe4c0ee20ceef94325e51128cb94902c1ef5bdc504d957c55bf2
     name: int-helm
     type: application
     urls:
-    - https://github.com/LucianoLoyola/Craftech-integrador/int-helm-0.1.0.tgz
+    - https://LucianoLoyola.github.io/Craftech-integrador/int-helm-0.1.0.tgz
     version: 0.1.0
   postgresql:
   - annotations:
@@ -58,4 +58,4 @@ entries:
     urls:
     - https://github.com/LucianoLoyola/Craftech-integrador/charts/postgresql-16.7.2.tgz
     version: 16.7.2
-generated: "2025-05-20T10:04:13.890584289-03:00"
+generated: "2025-05-20T13:49:01.174184058Z"
