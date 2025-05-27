@@ -77,9 +77,7 @@ externalSecret:
         key: trainee-program
 
 secretStore:
-  enabled: true
   name: secretstore-sample
-  region: us-east-1
   secretRef:
     accessKeyIDSecretRef:
       name: awssm-secret
